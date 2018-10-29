@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app='teste'>
+<head>
+    <meta charset="utf-8">
+    <title>Teste</title>
+    <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript">
+        angular.module('teste', [])
+        angular.module('teste').controller('myController', [
+            '$scope',
+            function($scope) {
+                //View --> DOM
+                //Scope --> Stores vars from View and Controller
+                //Controller --> Controls the DOM with methods and functions
+                $scope.value = 10;
+                $scope.incremento = function() {
+                    $scope.value++;
+                }
+            }
+        ])
+    </script>
+</head>
+    <body>
+        <div ng-controller="myController">
+            <h1>{{value}}</h1>
+            <input ng-model="value" />
+            <button ng-click="incremento()">Incrementar</button>
+        </div>
+    </body>
+</html>
