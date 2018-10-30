@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app='teste'>
+<head>
+    <meta charset="utf-8">
+    <title>Teste</title>
+    <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript">
+        angular.module('teste', [])
+        angular.module('teste').component('field', {
+            bindings: {
+                id: '@',
+                label: '@',
+                model: '='//@ binds a simple string
+                          //< one dim binding. Only binds what the controller sends, does not update anything set on component tags. Ex: When you change the input (l.32) WONT impact the var ctrl.name
+                          //= bidimensional binding. Binds both in Component and in Controller
+
+            },
+            template: //Dollar sign aqui é usado para alcançar o component atraves do scope/model
+                `<label for="{{$ctrl.id}}">{{$ctrl.label}}</label>
+                <input id="{{$ctrl.id}}" ng-model='$ctrl.model'/>`
+
+        });
+
+        angular.module('teste').controller('myController', function () {
+            const self = this;
+            self.name = "Fuck";
+        })
+    </script>
+</head>
+    <body>
+    <div ng-controller="myController as ctrl">
+        <h1>{{ctrl.name}}</h1>
+        <field id="nome" label="Nome" model="ctrl.name"></field>
+    </div>
+    </body>
+</html>

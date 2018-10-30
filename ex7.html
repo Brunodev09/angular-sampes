@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app='teste'>
+<head>
+    <meta charset="utf-8">
+    <title>Teste</title>
+    <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript">
+        angular.module('teste', [])
+        angular.module('teste').directive('myClock', function () {
+            return {
+                restrict: 'AE',
+                template: `<h1>${new Date}</h1>`
+            }
+        })
+    </script>
+</head>
+    <body>
+        <h1>Atributo</h1>
+        <div my-clock></div> <!--Chamar o nome da diretiva com '-' a partir da cammel case, no caso a partir da letra 'C'-->
+        <hr>
+    <h1>Elemento</h1>
+    <my-clock></my-clock>
+    </body>
+</html>
