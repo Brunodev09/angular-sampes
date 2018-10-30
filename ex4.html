@@ -6,25 +6,26 @@
     <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
     <script type="text/javascript">
         angular.module('teste', [])
+        angular.module('teste').filter('upper', function () {
+            return function (input) {
+                return input.toUpperCase();
+            }
+        })
         angular.module('teste').controller('myController', [
             function() {
 
-                const self = this
+                const self = this;
+                // Nesta pratica, remove-se a necessidade do intermediário do escopo, tornando o Controller responsavel por interagir diretamente com a View (DOM)
+                self.value = 'texto';
 
-
-                self.value = 10;
-                self.incremento = function() {
-                    self.value++;
-                }
             }
         ])
     </script>
 </head>
     <body>
-        <div ng-controller="myController">
-            <h1>{{value}}</h1>
-            <input ng-model="value" />
-            <button ng-click="incremento()">Incrementar</button>
+        <div ng-controller="myController as ctrl"> <!--Instanciando Controller-->
+            <h1>{{ctrl.value | upper}}</h1> <!--Usar pipe para aplicar filtro(s)-->
+            <input ng-model="ctrl.value" />
         </div>
     </body>
 </html>
